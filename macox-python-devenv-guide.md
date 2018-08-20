@@ -25,7 +25,7 @@
 require-virtualenv = true
 
 [uninstall]
-require-virtualenv = true
+require-virtualenv = true```
 - Add a bash function to let us use PIP in non-virtualenvs
 	- `vi ~/.bashrc`
 	- add these lines:
