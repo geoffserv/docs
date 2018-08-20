@@ -21,15 +21,18 @@
 - Configure pip a little
 	- `vim ~/Library/Application\ Support/pip/pip.conf`
 	- Add to force pip to only run in virtualenvs to prevent accidental global installs:
-```[install]
+```
+[install]
 require-virtualenv = true
 
 [uninstall]
-require-virtualenv = true```
+require-virtualenv = true
+```
 - Add a bash function to let us use PIP in non-virtualenvs
 	- `vi ~/.bashrc`
 	- add these lines:
-```# Function to allow pip to run in non-virtualenvs
+```
+# Function to allow pip to run in non-virtualenvs
 # For ex to do system-wide upgrades:
 # gpip install 	-upgrade pip setuptools wheel virtualenv
 #
@@ -37,7 +40,8 @@ require-virtualenv = true```
 # prevent pip from running globally
 gpip(){
    PIP_REQUIRE_VIRTUALENV="0" pip3 "$@"
-}```
+}
+```
 - Create some virtualenvs
 	- `cd ~/dev/virtualenvs`
 	- virtualenv foobar
