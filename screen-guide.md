@@ -13,14 +13,14 @@ ctrl a ? -> help
 ctrl a [ -> start copy, move cur­sor to the copy loca­tion, press ENTER, select the chars, press ENTER to copy the selected char­ac­ters to the buffer
 ctrl a ] -> paste from buffer
 ```
-##Starting screen
+## Starting screen
 ```
 screen –DR -> list of detached screen
 screen –r PID -> attach detached screen ses­sion
 screen –dmS MySession -> start a detached screen session
 screen –r MySession -> attach screen session with name MySession
 ```
-##Advanced
+## Advanced
 ```
 ctrl a S -> create split screen
 ctrl a TAB -> switch between split screens
