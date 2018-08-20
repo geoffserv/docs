@@ -1,6 +1,6 @@
 - Git initial CLI config
-	- `git config 	-global user.email "user@domain.com..."`
-	- `git config 	-global user.name "username..."`
+	- `git config --global user.email "user@domain.com..."`
+	- `git config --global user.name "username..."`
 - Create a new repository
 	- https://help.github.com/articles/creating-a-new-repository/
 	- https://github.com/new
@@ -25,3 +25,5 @@
 	- `git merge stdin-support`
 	- `git commit`
 	- `git push`
+- Check out an existing repo from somewhere
+	- `git clone https://github.com/someone/repo`
