@@ -1,0 +1,9 @@
+- Create a new VirtualEnv
+-- `virtualenv palendrome`
+- `cd ~/projects`
+- `mkdir palendrome`
+- `cd palendrome`
+- `install click`
+-- https://dbader.org/blog/python-commandline-tools-with-click
+-- `pip3 install click`
+- `vi palendrome.py`
