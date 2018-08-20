@@ -9,8 +9,8 @@
 	- `xcode-select 	-install`
 - Install Homebrew
 	- `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-	- run brew doctor to check for any problems
-	- run brew update to get updates
+	- run `brew doctor` to check for any problems
+	- run `brew update` to get updates
 - Install python3.x with homebrew
 	- `brew install python`
 - Install virtualenv
