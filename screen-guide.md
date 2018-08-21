@@ -10,8 +10,12 @@ ctrl a " -> choose window
 ctrl a ctrl a -> switch between window
 ctrl a d -> detach window
 ctrl a ? -> help
-ctrl a [ -> start copy, move cur­sor to the copy loca­tion, press ENTER, select the chars, press ENTER to copy the selected char­ac­ters to the buffer
+ctrl a [ -> start copy, move cursor to the copy location, press ENTER, select the chars, press ENTER to copy the selected characters to the buffer
 ctrl a ] -> paste from buffer
+ctrl a esc -> enter copy mode, then
+	fn + arrow keys -> page up, down
+	arrow keys -> line up, down
+	etc -> exit copy mode
 ```
 ## Starting screen
 ```
