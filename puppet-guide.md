@@ -1,3 +1,5 @@
+> This is obviously horrible but a minimum bootstrap guide to get up and experimental
+
 - Install the puppetmater packages & do some setup
 	- Ubuntu 16.04
 		- Did a fresh install, apt-get update/upgrade
@@ -23,7 +25,7 @@ class apache2 {
   }
 }
 ```
-
+-
 	- Create a node that includes the class
 		- Add to `/etc/puppet/manifests/site.pp`
 
@@ -32,7 +34,7 @@ node 'puppetclient.example.com' {
    include apache2
 }
 ```
-
+-
 	- Bounce the daemon
 		- `sudo systemctl restart puppetmaster.service`
 - Now set up a node to manage
@@ -50,8 +52,32 @@ node 'puppetclient.example.com' {
 	- On the client, enable puppet `sudo puppet agent --enable`
 	- Test run `sudo puppet agent --test`
 	- Check that the package is installed `sudo dpkg -s apache2|grep Status`
+- Lets install and manage MySQL
+	- Install the puppetlabs MySQL module
+		- On the puppetserver `sudo puppet module install puppetlabs-mysql`
+	- Add this class to the puppetservers `/etc/puppet/manifests/init.pp`
+	- Within the node declaration for the node
 
-
+```
+# We want MySQL installed on our machine
+# We want MySQL to be constantly running
+class { '::mysql::server':
+    # We want to set custom MySQL root password
+    root_password    => 'our_custom_password_here',
+    override_options => {
+        'mysqld' => {
+            # We want MySQL max connections to be set to max_connections
+            'max_connections'   => '1024',
+            # We want MySQL key_buffer_size set to 512M      
+            'key_buffer_size'   => '512M'       
+        }       
+    }   
+}
+```
+-
+	- Double check your work `puppet parser validate /etc/puppet/manifests/init.pp`
+	
 > sources: https://www.slideshare.net/suhancoold/puppet-quick-start-guide
 > https://help.ubuntu.com/lts/serverguide/puppet.html.en
 > https://kyup.com/tutorials/introduction-puppet-configure-mysql-instances-puppet/
+> https://www.digitalocean.com/community/tutorials/getting-started-with-puppet-code-manifests-and-modules
