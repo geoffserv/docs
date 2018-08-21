@@ -106,7 +106,7 @@ Error: Could not retrieve catalog; skipping run
 	- Install the example42 stuff on master and client `sudo puppet module install example42-mysql`
 	- Updated the manifest with the most baseline example42 config for a mysql server:
 ```
-node 'mysqlmaster.tx.com' {
+node 'mysqlmaster.x.com' {
 
         class { "mysql": }
 
@@ -116,7 +116,24 @@ node 'mysqlmaster.tx.com' {
 	- Bounced everything `sudo systemctl restart puppetmaster.service`
 	- Test on the client `sudo puppet agent --test`
 	- Huzzah it worked! `sudo dpkg -s mysql-server`
+	- Things are starting to work, added a root_password and tried making a table successfully.  in the puppetmaster's /etc/puppet/manifests/site.pp:
+```
+node 'mysqlmaster.x.com' {
+
+        class { "mysql":
+                root_password => '...',
+        }
+        mysql::grant { 'join_test':
+                mysql_user      => '...',
+                mysql_password  => '...',
+        }
+
+}
+```
+-
+	- and it all worked.
 > sources: https://www.slideshare.net/suhancoold/puppet-quick-start-guide
 > https://help.ubuntu.com/lts/serverguide/puppet.html.en
 > https://kyup.com/tutorials/introduction-puppet-configure-mysql-instances-puppet/
 > https://www.digitalocean.com/community/tutorials/getting-started-with-puppet-code-manifests-and-modules
+> https://forge.puppet.com/example42/mysql
