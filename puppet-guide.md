@@ -76,7 +76,46 @@ class { '::mysql::server':
 ```
 -
 	- Double check your work `puppet parser validate /etc/puppet/manifests/init.pp`
-	
+	- I keep having this error on the client:
+```
+Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Unknown function mysql::deepmerge at /etc/puppet/modules/mysql/manifests/server.pp:117 on node mysqlmaster.x.com
+Warning: Not using cache on failed catalog
+Error: Could not retrieve catalog; skipping run
+```
+-
+	- Astonishingly the error ZRP's on Google.  Super weird. Tried manually hacking /etc/puppet/modules/mysql/manifests/server.pp to require the .rb file which contains the deepmerge method.  Tried forcing an upgrade of the module on the client and the server.  The version of the module is 6.0.0.
+	- Removing version 6.0.0: `sudo puppet module uninstall puppetlabs-mysql`
+	- Grabbing the penultimate release: `wget https://forge.puppet.com/v3/files/puppetlabs-mysql-5.4.0.tar.gz`
+	- Installing it from local source `sudo puppet module install ./puppetlabs-mysql-5.4.0.tar.gz`
+	- That's totally not working either.  A different set of errors that I can't find answers to quickly:
+```
+Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Syntax error at 'Optional'; expected ')' at /etc/puppet/modules/mysql/manifests/db.pp:45 on node mysqlmaster.x.com
+Warning: Not using cache on failed catalog
+Error: Could not retrieve catalog; skipping run
+geoff@mysqlmaster:~$ sudo puppet agent --test
+Info: Retrieving pluginfacts
+Info: Retrieving plugin
+Info: Loading facts
+Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Resource type mysql::db doesn't exist on node mysqlmaster.x.com
+Warning: Not using cache on failed catalog
+Error: Could not retrieve catalog; skipping run
+```
+-
+	- Ugh headachey.  Decided to sanity check and try the example42 modules:
+	- Uninstall the puppetlabs stuff on master and client `sudo puppet module uninstall puppetlabs-mysql`
+	- Install the example42 stuff on master and client `sudo puppet module install example42-mysql`
+	- Updated the manifest with the most baseline example42 config for a mysql server:
+```
+node 'mysqlmaster.tx.com' {
+
+        class { "mysql": }
+
+}
+```
+-
+	- Bounced everything `sudo systemctl restart puppetmaster.service`
+	- Test on the client `sudo puppet agent --test`
+	- Huzzah it worked! `sudo dpkg -s mysql-server`
 > sources: https://www.slideshare.net/suhancoold/puppet-quick-start-guide
 > https://help.ubuntu.com/lts/serverguide/puppet.html.en
 > https://kyup.com/tutorials/introduction-puppet-configure-mysql-instances-puppet/
