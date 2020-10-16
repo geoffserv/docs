@@ -1,0 +1,11 @@
+- Get vimoutliner
+	- https://github.com/vimoutliner/vimoutliner
+	- https://github.com/vimoutliner/vimoutliner/downloads
+- Extract, install
+- Setting up colors
+	- Simplest way for me: uncomment `setlocal background=dark` in the `~/.vim/vimoutliner/vimoutlinerrc`
+	- Wanna try your own? I couldn't get it to work but breadcrumbs:
+		- A VIM color chart: https://codeyarns.github.io/tech/2011-07-29-vim-chart-of-color-names.html
+		- vimoutliner schemes are in `~/.vim/colors`
+		- make a copy, mod as you like
+		- then load by setting at the bottom of `~/.vim/vimoutliner/vimoutlinerrc`

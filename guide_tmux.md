@@ -1,0 +1,16 @@
+- Install tmux
+	- OS X: `brew install tmux`
+- Vanilla guides
+	- https://gist.github.com/MohamedAlaa/2961058
+- vs. Screen
+	- Default bind key is Ctrl+b
+- Quick session walkthrough
+	- `tmux new -s smile` # Create a new tmux session called smile
+	- `c-b d` # Detach the session and drop back to top level shell
+	- `tmux ls` # list the available sessions
+	- `tmux a` or `tmux a -t smile` # attach back
+- Functionality like `screen -x`
+	- Multiple 'views' in to single set of 'windows'
+	- https://gist.github.com/chakrit/5004006	
+	- `new-session -s main` # Create an initial windows group AND session group
+	- `/usr/local/bin/tmux new-session -t main` # Create a new session but use the EXISTING window group
