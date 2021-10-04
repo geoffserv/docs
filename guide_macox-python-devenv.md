@@ -52,3 +52,18 @@ gpip(){
 	- `/home/you/dev/virtualenvs/foobar/bin/python /path/to/script.py`
 
 > Sources: https://hackercodex.com/guide/mac-development-configuration/
+
+- Quickly check out a project with full setup on Ubuntu
+- `sudo apt-get update`
+- `sudo apt-get install pip`
+- `sudo apt-get install virtualenv`
+- `sudo apt-get install git`
+- `ssh-keygen`
+- (copy ~/.ssh/id_rsa.pub to Github portal ssh keys, if ever intend on 
+committing changes)
+- `mkdir dev; cd dev`
+- `git clone -b branchname git@github.com:username/project.git`
+- `cd project`
+- `virtualenv project`
+- `source project/bin/activate`
+- `pip install -r requirements.txt`
